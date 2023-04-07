@@ -1,17 +1,30 @@
 ﻿using FileLinesSum;
+using System.Diagnostics;
 
-var filePath = @"D:\Projects\FileLinesSumSolution\testfile.txt";
+
+var location = System.Reflection.Assembly.GetExecutingAssembly().Location;
+var path = Path.GetDirectoryName(location);
+var testFilesFolder = @"\TestFiles\";
+var goodFile = "testfile1.txt";
+var emptyFile = "emptyfile.txt";
+
+var filePath = path + testFilesFolder + emptyFile;
+Console.WriteLine(filePath);
 
 try
 {
-    var combiner = new Combiner(filePath);
-    CombinerHelper.ToConsole(combiner);
+    var linesLoader = new LinesLoader(filePath);
+    LoaderHelper.ToConsole(linesLoader);
+    var linesParser = new LinesParser(linesLoader.Lines);
+    var linesSummator = new LinesSummator(linesParser.ParsedLines);
+    SummatorHelper.ToConsole(linesSummator);
+
 }
-catch (LineIsNullExeption)
+catch (FileIsEpmtyExeption)
 {
     Console.WriteLine("FILE IS EMPTY!");
 }
-catch (FileNotFoundException)
+catch (System.IO.FileNotFoundException)
 {
     Console.WriteLine("FILE NOT FOUND!");
 }
