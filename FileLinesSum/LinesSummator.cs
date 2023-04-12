@@ -19,7 +19,8 @@ public class LinesSummator
     {
         return _summs.Select((value, index) => new { value , index })
 		.Where(x => x.value is null)
-		.Select(x => x.index).ToArray();
+		.Select(x => x.index)
+		.ToArray();
     }
 
 

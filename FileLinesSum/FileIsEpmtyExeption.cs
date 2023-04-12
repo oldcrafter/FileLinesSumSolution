@@ -1,3 +1,5 @@
-﻿public class FileIsEpmtyExeption : Exception
+﻿namespace FileLinesSum;
+
+public class FileIsEpmtyExeption : Exception
 {
 }

@@ -29,7 +29,6 @@ internal class LinesParser
             else return Array.Empty<double>();
 
         return numbersFromLine.ToArray();
-
     }
 
     private string[] SplitLIne(string line)

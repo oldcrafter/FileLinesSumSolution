@@ -14,5 +14,4 @@ public class LineSpliter
             .Select(p => p.Trim().Replace(DecimalDelimiter, ","))
             .ToArray();
     }
-    
 }
