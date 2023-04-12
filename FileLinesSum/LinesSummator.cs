@@ -17,9 +17,9 @@ public class LinesSummator
 
     public int[] GetIndexesOfBadLines()
     {
-        return _summs.Select((v, i) => new { v , i })
-		.Where(x => x.v is null)
-		.Select(x => x.i).ToArray();
+        return _summs.Select((value, index) => new { value , index })
+		.Where(x => x.value is null)
+		.Select(x => x.index).ToArray();
     }
 
 

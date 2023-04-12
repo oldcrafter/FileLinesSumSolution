@@ -1,14 +1,12 @@
 ﻿using FileLinesSum;
-using System.Diagnostics;
+//using System.Diagnostics;
 
 
 var location = System.Reflection.Assembly.GetExecutingAssembly().Location;
 var path = Path.GetDirectoryName(location);
 var testFilesFolder = @"\TestFiles\";
-var goodFile = "testfile1.txt";
-var emptyFile = "emptyfile.txt";
-
-var filePath = path + testFilesFolder + emptyFile;
+var goodFile = "testfile.txt";
+var filePath = path + testFilesFolder + goodFile;
 Console.WriteLine(filePath);
 
 try
