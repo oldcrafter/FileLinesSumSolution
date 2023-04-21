@@ -2,39 +2,30 @@
 
 public class LinesSummator
 {
-	public double?[] Summs => GetSummsFromLines();
-	private readonly Line[] _lines;
+	public double?[] Summs => _summs;
+	private readonly double?[] _summs;
 
-	public LinesSummator(Line[] lines)
+    public LinesSummator(List<Line> lines)
 	{
-		_lines = lines;
+		_summs = new double?[lines.Count]; 
+		GetSummsFromLines(lines);
 	}
 
-	private double?[] GetSummsFromLines()
+	private void GetSummsFromLines(List<Line> lines)
 	{
-        var summs = new double?[_lines.Length];
-
-        for (var i = 0; i < _lines.Length; i++)
-		{
-
-			var splitedLines = _lines[i].Split();
-
-			if (splitedLines.All(t => t.isNumber()))
-				summs[i] = splitedLines.Select(t => t.ToNumber()).Sum();
-		}
-
-		return summs;
-	}
+		foreach(var line in lines)
+			_summs[line.Index] = line.GetSum();
+	} 
 
     public int GetIndexOfLineWithMaxSum()
 	{
-        var (value, index) = Summs.Select((n, i) => (n, i)).Max();
+        var (value, index) = _summs.Select((n, i) => (n, i)).Max();
         return index;
     }
 
     public int[] GetIndexesOfBadLines()
     {
-        return Summs.Select((value, index) => new { value , index })
+        return _summs.Select((value, index) => new { value , index })
 		.Where(x => x.value is null)
 		.Select(x => x.index)
 		.ToArray();

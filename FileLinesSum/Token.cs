@@ -2,14 +2,14 @@
 
 public class Token
 {
-    private string _token;
+    private readonly string _token;
 
     public Token(string token)
     {
-        _token = token.Replace(".", ","); ;
+        _token = token.Replace(".", ",");
     } 
 
-    public bool isNumber()
+    public bool IsNumber()
     {
         return double.TryParse(_token, out _);
     }

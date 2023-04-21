@@ -4,11 +4,10 @@ public static class LoaderHelper
 {
     public static void ToConsole(LinesLoader loader)
     {
-        Console.WriteLine("============= LOAD FROM FILE " + loader.FilePath + " =================");    
-        for (var i = 0; i < loader.Lines.Length; i++)
-        {
-            Console.WriteLine("[index : {0}] {1}", i, loader.Lines[i]);
-        }
+        Console.WriteLine("============= LOAD FROM FILE " + loader.FilePath + " =================");
+
+        loader.Lines.Sort();
+        loader.Lines.ForEach(line => Console.WriteLine(line));
     } 
 
     public static LinesLoader GetLinesLoader()
@@ -23,9 +22,9 @@ public static class LoaderHelper
                 if (string.IsNullOrEmpty(filePath))
                     throw new ArgumentNullException();
 
-                var loader = new LinesLoader(filePath);
+                FileIsEmptyException.ThrowIfFileIsEmpty(filePath);
 
-                FileIsEmptyExeption.ThrowIfFileIsEmpty(loader.Lines);
+                var loader = new LinesLoader(filePath);
 
                 return loader;
             }
@@ -37,7 +36,7 @@ public static class LoaderHelper
             {
                 Console.WriteLine("filePath is null or empty. input file path again!");
             }
-            catch (FileIsEmptyExeption)
+            catch (FileIsEmptyException)
             {
                 Console.WriteLine("file is empty. input file path again!");
             }
