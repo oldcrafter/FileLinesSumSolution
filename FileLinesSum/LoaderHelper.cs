@@ -32,10 +32,6 @@ public static class LoaderHelper
             {
                 Console.WriteLine("bad file name. input file path again!");
             }
-            catch (System.IO.FileNotFoundException)
-            {
-                Console.WriteLine("filePath is null or empty. input file path again!");
-            }
             catch (FileIsEmptyException)
             {
                 Console.WriteLine("file is empty. input file path again!");

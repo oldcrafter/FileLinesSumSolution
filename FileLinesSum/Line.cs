@@ -15,21 +15,21 @@ public class Line : IComparable<Line>
         _index = lineIndex;
     }
 
-    public Token[] SplitLine()
+    private Token[] SplitLine()
     {
         return _value.Split(Separator)
             .Select(s => new Token(s.Trim()))
             .ToArray();
     }
 
-    public double? GetSum()
+    public double GetSum()
     {
         var tokens = SplitLine();
 
         if (tokens.All(t => t.IsNumber()))
             return tokens.Select(t => t.ToNumber()).Sum();
 
-        return null;
+        return double.NaN;
     }
 
     public int CompareTo(Line? other)

@@ -8,13 +8,18 @@ public class LinesLoader
     public List<Line> Lines => _lines;
 
     private readonly string _filePath;
-    private readonly List<Line> _lines;
+    private List<Line> _lines = new();
 
     public LinesLoader(string filePath)
 	{
         _filePath= filePath;
+        LoadLinesFromFile(filePath);
+    }
+
+    private void LoadLinesFromFile(string filePath)
+    {
         _lines = File.ReadAllLines(_filePath, Encoding.UTF8)
-            .Select((value, index) => new Line(value, index))
-            .ToList();
+        .Select((value, index) => new Line(value, index))
+        .ToList();
     }
 }
