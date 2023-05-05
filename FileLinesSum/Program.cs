@@ -1,9 +1,13 @@
 ﻿using FileLinesSum;
 
-var loader = LoaderHelper.GetLinesLoader();
-LoaderHelper.ToConsole(loader);
+var filePath = @"D:\Projects\FileLinesSumSolution\TestFiles\testfile.txt";
+var numberFromFile = NumberFile.LoadFromFile(filePath);
+var indexOfLineWithMaxSum = numberFromFile.GetIndexOfLineWithMaxSum();
+var indexesOfBadLines = numberFromFile.GetIndexesOfBadLines();
 
-var summator = new LinesSummator(loader.Lines);
-SummatorHelper.ToConsole(summator);
+
+Console.WriteLine("indexOfLineWithMaxSum = " + indexOfLineWithMaxSum);
+Console.WriteLine(indexesOfBadLines.Aggregate("indexesOfBadLines:", (first, next) => $"{first} {next}"));
+
 
 
